@@ -46,7 +46,8 @@
   "permissions": [
     "webRequest",
     "webRequestBlocking",
-    "*://tetris.com/*"
+    "*://tetris.com/*",
+    "*://*.vocaroo.com/*"
   ],
   "version": "0.0.0"
 }
