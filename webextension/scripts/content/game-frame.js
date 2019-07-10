@@ -1,10 +1,9 @@
-let game = 'sanrio';
-
 window.stop();
 
 replaceBody();
 
 function replaceBody() {
+    let game = 'sanrio';
     let documentElement = document
         .documentElement;
 
@@ -60,8 +59,8 @@ function replaceBody() {
 
         #GameDiv {
             position: relative;
-            width: 800px;
-            height: 600px;
+            width: 100vw;
+            height: 100vh;
             left: 0px;
             top: 0px;
             background: black;
@@ -70,8 +69,8 @@ function replaceBody() {
         }
 
         #GameCanvas {
-            width: 800px;
-            height: 600px;
+            width: 100vw;
+            height: 100vh;
         }
 
         #Cocos2dGameContainer, #loadingText, #loadingDisplay {
