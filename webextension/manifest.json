@@ -5,6 +5,35 @@
       "scripts/background/request-listener.js"
     ]
   },
+  "content_scripts": [
+    {
+      "all_frames": false,
+      "js": [
+        "scripts/content/game-page.js"
+      ],
+      "matches": [
+        "*://tetris.com/play-tetris*",
+        "*://tetris.com/sanrio*",
+        "*://tetris.com/madilynbailey*",
+        "*://tetris.com/play-tetris-content/index-mobile.php*",
+        "*://tetris.com/games-content/sanrio01/index-mobile.php*",
+        "*://tetris.com/play-tetris-content-mb/index-mobile.php*"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "all_frames": true,
+      "js": [
+        "scripts/content/game-frame.js"
+      ],
+      "matches": [
+        "*://tetris.com/play-tetris-content/resources/project-tetriscom/game/if_game_html5.php*",
+        "*://tetris.com/games-content/sanrio01/resources/project-tetriscom-sanrio01/game/if_game_html5.php*",
+        "*://tetris.com/play-tetris-content-mb/resources/project-tetriscom-MB/game/if_game_html5.php*"
+      ],
+      "run_at": "document_start"
+    }
+  ],
   "description": "Play tetromino.com games with less lag",
   "icons": {
     "16": "icons/16.png",
