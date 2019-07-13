@@ -62,7 +62,7 @@
   ],
   "web_accessible_resources": [
     "assets/images/*/*.png",
-    "assets/images/sounds/*.mp3"
+    "assets/sounds/*.mp3"
   ],
   "version": "0.0.1"
 }
