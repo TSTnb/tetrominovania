@@ -38,7 +38,6 @@ let host = 'tetris.com',
             'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/resources-shared/sounds/Stars/lineClear.mp3': 'assets/sounds/lineClear.mp3',
             'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/resources-shared/sounds/Stars/lock.mp3': 'assets/sounds/lock.mp3',
             'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/resources-shared/sounds/Stars/win.mp3': 'https://s0.vocaroo.com/media/download_temp/Vocaroo_s0Az4rAoCxvB.mp3',
-
         }
     ),
     assetPaths = Object.keys(assetRedirects),
