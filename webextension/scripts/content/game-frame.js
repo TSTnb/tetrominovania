@@ -91,12 +91,15 @@ function loadGame(cbid) {
 
     sources.forEach(
         function (source) {
+            let scriptElement = document.createElement('script');
+            scriptElement.async = false;
+            scriptElement.setAttribute('src', source);
+
             document
                 .body
                 .appendChild(
-                    document.createElement('script')
-                )
-                .setAttribute('src', source);
+                    scriptElement
+                );
         }
     );
 }
