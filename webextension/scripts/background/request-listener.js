@@ -46,7 +46,7 @@ async function addListeners(host) {
          * https://github.com/uBlockOrigin/uBlock-issues/issues/338#issuecomment-496009417
          */
         .addListener(
-            relaxCrossOriginResourceSharing
+            relaxedCrossOriginResourceSharing
             ,
             {
                 urls: offsiteAssetUrls,
@@ -121,20 +121,22 @@ async function loadRedirectDefinitions(path = 'assets/redirect-definitions.json'
 }
 
 /* Required for vocaroo.com */
-function relaxCrossOriginResourceSharing(event) {
-    let accessControlHeader = null,
+function relaxedCrossOriginResourceSharing(event) {
+    let accessControlHeader,
         responseHeaders = event
             .responseHeaders,
         headerNames = responseHeaders.map(
             function (header) {
-                return header.name.toLowerCase();
+                return header
+                    .name
+                    .toLowerCase();
             }
         ),
         index = headerNames.indexOf('access-control-allow-origin');
 
     if (index === -1) {
         accessControlHeader = {
-            name: 'access-control-allow-origin'
+            name: 'access-control-allow-origin',
         };
         responseHeaders.push(accessControlHeader);
     } else {
@@ -144,7 +146,7 @@ function relaxCrossOriginResourceSharing(event) {
     accessControlHeader.value = '*';
 
     return {
-        responseHeaders: responseHeaders
+        responseHeaders: responseHeaders,
     }
 }
 
