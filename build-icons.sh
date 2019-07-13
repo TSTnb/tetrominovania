@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 set -o errexit -o nounset -o pipefail;
 cd "$(dirname "$0")";
 
