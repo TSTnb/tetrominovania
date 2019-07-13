@@ -1,9 +1,7 @@
 window.stop();
-replaceBody();
+replaceBody('sanrio');
 
-function replaceBody() {
-    let game = 'sanrio';
-
+function replaceBody(game) {
     document
         .replaceChild(
             document
@@ -18,7 +16,7 @@ function replaceBody() {
     document.replaceChild(
         document
             .implementation
-            .createHTMLDocument('Play Tetromino Game')
+            .createHTMLDocument('Play Tetrominovania')
             .documentElement,
         document.documentElement
     );
@@ -39,18 +37,17 @@ function replaceBody() {
         .head
         .appendChild(
             document.createElement('style')
-        ).innerHTML = `
-            body {
+        ).textContent = `
+            body, iframe {
                 margin: 0;
                 padding: 0;
             }
+
             iframe {
                 display: block;
                 width: 100vw;
                 height: 100vh;
                 max-width: 100%;
-                margin: 0;
-                padding: 0;
                 border: 0 none;
                 border-sizing: border-box;
             }
@@ -61,68 +58,5 @@ function replaceBody() {
         .appendChild(
             document.createElement('iframe')
         )
-        .src = baseUrl + 'if_game_html5.php?p=d&cbid=' + cbid;
-}
-
-function loadGame(cbid) {
-    getPageElapsedTimeMSEC = function () {
-        return Date.now() - pageStartTimeMSEC;
-    };
-
-    getCBID = function () {
-        return cbid;
-    };
-
-    getGameDiv = function () {
-        return gameDiv;
-    };
-
-    getGameCanvas = function () {
-        return gameCanvas;
-    };
-
-    removeLoadingDisplay = function () {
-        let removeIds = [
-            'loadingText',
-            'loadingDisplay',
-        ];
-
-        removeIds.forEach(
-            function (id) {
-                let element = document.querySelector('#' + id);
-
-                if (element instanceof HTMLElement) {
-                    element
-                        .parentNode
-                        .removeChild(element);
-                }
-            }
-        );
-    };
-
-    pageStartTimeMSEC = Date.now();
-    window.cbid = cbid;
-    isDesktop = true;
-    isMobile = false;
-    platformSrcDir = 'src-desktop/';
-
-    gameDiv = document.querySelector('#GameDiv');
-    gameCanvas = document.querySelector('#GameCanvas');
-
-
-    let sources = [
-        platformSrcDir + 'settings.js?cbid=' + getCBID(),
-        'main-bps.js?cbid=' + getCBID(),
-    ];
-
-    sources.forEach(
-        function (source) {
-            document
-                .body
-                .appendChild(
-                    document.createElement('script')
-                )
-                .src = source;
-        }
-    );
+        .setAttribute('src', baseUrl + 'if_game_html5.php?p=d&cbid=' + cbid);
 }
