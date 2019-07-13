@@ -49,5 +49,9 @@
     "*://tetris.com/*",
     "*://*.vocaroo.com/*"
   ],
+  "web_accessible_resources": [
+    "assets/images/*/*.png",
+    "assets/images/sounds/*.mp3"
+  ],
   "version": "0.0.0"
 }
