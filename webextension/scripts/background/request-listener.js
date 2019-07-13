@@ -11,7 +11,7 @@ async function addListeners(host) {
         offsiteAssetUrls,
         assetPaths;
 
-    pathsToDataUris(assetRedirects);
+    await pathsToDataUris(assetRedirects);
 
     offsiteAssetUrls = Object
         .values(assetRedirects)
@@ -20,6 +20,7 @@ async function addListeners(host) {
                 return addWildcard(url);
             }
         );
+
     assetPaths = Object.keys(assetRedirects);
 
     browser
@@ -150,7 +151,11 @@ function relaxCrossOriginResourceSharing(event) {
 
 async function pathsToDataUris(object) {
     for (let key in object) {
-        object[key] = await urlToDataUri(object[key]);
+        urlToDataUri(object[key]).then(
+            function (dataUri) {
+                object[key] = dataUri;
+            }
+        );
     }
 }
 
