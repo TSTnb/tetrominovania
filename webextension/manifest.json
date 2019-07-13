@@ -3,8 +3,12 @@
   "background": {
     "persistent": true,
     "scripts": [
-      "scripts/background/request-listener.js"
+      "scripts/background/request-listener.js",
+      "scripts/background/menu-button.js"
     ]
+  },
+  "browser_action": {
+    "default_title": "Tetrominovania"
   },
   "browser_specific_settings": {
     "gecko": {
