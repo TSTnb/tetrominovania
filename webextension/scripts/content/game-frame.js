@@ -64,6 +64,18 @@ function replaceBody(game) {
 }
 
 function loadGame(cbid) {
+    const NormalImage = Image;
+
+    class CrossOriginImage {
+        constructor(w, h) {
+            const image = new NormalImage(w, h);
+            image.crossOrigin = 'anonymous';
+            return image;
+        }
+    }
+
+    self.Image = CrossOriginImage;
+
     getCBID = function () {
         return cbid;
     };
