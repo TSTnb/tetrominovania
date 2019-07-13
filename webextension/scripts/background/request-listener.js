@@ -32,7 +32,7 @@ async function addListeners(host) {
         .addListener(
             redirectAssets,
             {
-                urls: makeUrls(assetPaths),
+                urls: makeUrlPatterns(assetPaths),
             },
             [
                 'blocking',
@@ -82,7 +82,7 @@ async function addListeners(host) {
             : null;
     }
 
-    function makeUrls(paths) {
+    function makeUrlPatterns(paths) {
         return paths.map(
             function (path) {
                 return addWildcard(makeUrl(path));
