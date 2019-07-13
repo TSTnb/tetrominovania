@@ -4,8 +4,8 @@ if (!(typeof browser === 'object' && browser instanceof Object)) {
 
 let host = 'tetris.com',
     assetRedirects = {
-        'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/resources-shared/music/remote/BPS-BR/Korobeiniki01.mp3': 'https://s0.vocaroo.com/media/download_temp/Vocaroo_s0144RxmywX1.mp3',
         'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/project-Sanrio/art/main-background.png': 'https://i.imgur.com/HGOwGhz.png',
+
         'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/project-Sanrio/art/minos/mino-CN-Sanrio-02-%23size=29%23-I.png': 'https://i.imgur.com/hYCcnAT.png',
         'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/project-Sanrio/art/minos/mino-CN-Sanrio-02-%23size=29%23-J.png': 'https://i.imgur.com/74RTAT9.png',
         'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/project-Sanrio/art/minos/mino-CN-Sanrio-02-%23size=29%23-L.png': 'https://i.imgur.com/mHUd2NJ.png',
@@ -22,6 +22,8 @@ let host = 'tetris.com',
         'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/project-Sanrio/art/minos/mino-CN-Sanrio-02-ghost-%23size=29%23-T.png': 'https://i.imgur.com/TYJvfSy.png',
         'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/project-Sanrio/art/minos/mino-CN-Sanrio-02-ghost-%23size=29%23-Z.png': 'https://i.imgur.com/hNaMhkO.png',
         'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/project-Sanrio/art/minos/mino-CN-Sanrio-02-ghost-%23size=29%23-garbage.png': 'https://i.imgur.com/LEkuAYU.png',
+
+        'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/resources-shared/music/remote/BPS-BR/Korobeiniki01.mp3': 'https://s0.vocaroo.com/media/download_temp/Vocaroo_s0144RxmywX1.mp3',
     },
     assetPaths = Object.keys(assetRedirects),
     redirectFilter = {
