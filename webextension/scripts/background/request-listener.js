@@ -4,7 +4,9 @@ if (!(typeof browser === 'object' && browser instanceof Object)) {
 
 let host = 'tetris.com',
     assetRedirects = {
+        'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/project-Sanrio/art/loading-background.png': 'https://i.imgur.com/0SzrovD.png',
         'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/project-Sanrio/art/main-background.png': 'https://i.imgur.com/HGOwGhz.png',
+        'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/project-Sanrio/art/main-logo-small.png': 'https://i.imgur.com/a9NHvAj.png',
 
         'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/project-Sanrio/art/minos/mino-CN-Sanrio-02-%23size=29%23-I.png': 'https://i.imgur.com/hYCcnAT.png',
         'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/project-Sanrio/art/minos/mino-CN-Sanrio-02-%23size=29%23-J.png': 'https://i.imgur.com/74RTAT9.png',
