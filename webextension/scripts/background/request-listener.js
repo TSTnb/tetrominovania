@@ -59,6 +59,22 @@ async function pathsToDataUris(object) {
     }
 }
 
+function changeUrisToWebResources(assetRedirects) {
+    for (let key in assetRedirects) {
+        assetRedirects[key] = uriToWebResource(assetRedirects[key]);
+    }
+
+    return assetRedirects;
+}
+
+function uriToWebResource(uri) {
+    return uri.match(new RegExp('^https?://')) instanceof Array
+        ? uri
+        : browser
+            .runtime
+            .getURL(uri);
+}
+
 function urlToDataUri(url) {
     return new Promise(
         function (resolveXhr, rejectXhr) {
@@ -92,7 +108,6 @@ function urlToDataUri(url) {
         }
     );
 }
-
 
 function makeUrls(paths) {
     return paths.map(
