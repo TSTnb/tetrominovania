@@ -1,9 +1,16 @@
 {
+  "author": "TSTman",
   "background": {
     "persistent": true,
     "scripts": [
       "scripts/background/request-listener.js"
     ]
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "tetrominovania@protonmail.com",
+      "strict_min_version": "52.0"
+    }
   },
   "content_scripts": [
     {
