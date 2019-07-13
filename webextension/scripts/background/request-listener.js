@@ -2,8 +2,10 @@ if (!(typeof browser === 'object' && browser instanceof Object)) {
     browser = chrome;
 }
 
-let host = 'tetris.com',
-    assetRedirects = changeUrisToWebResources(
+addListeners('tetris.com');
+
+function addListeners(host) {
+    let assetRedirects = changeUrisToWebResources(
         {
             'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/project-Sanrio/art/loading-background.png': 'assets/images/backgrounds/intro.png',
             'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/project-Sanrio/art/main-background.png': 'assets/images/backgrounds/main.png',
@@ -39,11 +41,12 @@ let host = 'tetris.com',
             'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/resources-shared/sounds/Stars/lock.mp3': 'assets/sounds/lock.mp3',
             'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/resources-shared/sounds/Stars/win.mp3': 'https://s0.vocaroo.com/media/download_temp/Vocaroo_s0Az4rAoCxvB.mp3',
         }
-    ),
-    assetPaths = Object.keys(assetRedirects),
-    redirectFilter = {
-        urls: makeUrls(assetPaths),
-    },
+        ),
+        offsiteAssetUrls,
+        assetPaths;
+
+    pathsToDataUris(assetRedirects);
+
     offsiteAssetUrls = Object
         .values(assetRedirects)
         .map(
@@ -51,8 +54,113 @@ let host = 'tetris.com',
                 return addWildcard(url);
             }
         );
+    assetPaths = Object.keys(assetRedirects);
 
-pathsToDataUris(assetRedirects);
+    browser
+        .webRequest
+        .onBeforeRequest
+        /* Should not be deprecated.
+         * https://github.com/uBlockOrigin/uBlock-issues/issues/338#issuecomment-496009417
+         */
+        .addListener(
+            redirectAssets,
+            {
+                urls: makeUrls(assetPaths),
+            },
+            [
+                'blocking',
+            ]
+        );
+
+    browser
+        .webRequest
+        .onHeadersReceived
+        /* Should not be deprecated.
+         * https://github.com/uBlockOrigin/uBlock-issues/issues/338#issuecomment-496009417
+         */
+
+        .addListener(
+            relaxCrossOriginResourceSharing
+            ,
+            {
+                urls: offsiteAssetUrls,
+            },
+            [
+                'blocking',
+                'responseHeaders',
+            ]
+        );
+
+    function redirectAssets(event) {
+        let redirectUrl = assetRedirects[urlToRoute(
+            event.url
+        )];
+
+        return {
+            'redirectUrl': redirectUrl
+        };
+    }
+
+    function urlToRoute(url) {
+        let matches = url.match(
+            new RegExp(
+                '^.*?://' +
+                host +
+                '[.]?/+(.+?)/?([?#].*)?$'
+            ),
+            'i'
+        );
+
+        return matches instanceof Array && typeof matches[1] === 'string'
+            ? matches[1]
+            : null;
+    }
+
+    function makeUrls(paths) {
+        return paths.map(
+            function (path) {
+                return addWildcard(makeUrl(path));
+            }
+        );
+    }
+
+    function makeUrl(path) {
+        return 'https://' + host + '/' + path;
+    }
+
+    function addWildcard(url) {
+        return url + '*';
+    }
+}
+
+/* Required for vocaroo.com */
+function relaxCrossOriginResourceSharing(event) {
+    let accessControlHeader = null,
+        responseHeaders = event
+            .responseHeaders,
+        headerNames = responseHeaders.map(
+            function (header) {
+                return header.name.toLowerCase();
+            }
+        ),
+        index = headerNames.indexOf('access-control-allow-origin');
+
+    if (index === -1) {
+        accessControlHeader = {
+            name: 'access-control-allow-origin'
+        };
+        responseHeaders.push(accessControlHeader);
+    } else {
+        accessControlHeader = responseHeaders[index];
+    }
+
+    accessControlHeader.value = '*';
+
+    return {
+        responseHeaders: responseHeaders
+    }
+}
+
 
 async function pathsToDataUris(object) {
     for (let key in object) {
@@ -108,102 +216,4 @@ function urlToDataUri(url) {
             xhr.send();
         }
     );
-}
-
-function makeUrls(paths) {
-    return paths.map(
-        function (path) {
-            return addWildcard(makeUrl(path));
-        }
-    );
-}
-
-function addWildcard(url) {
-    return url + '*';
-}
-
-function makeUrl(path) {
-    return 'https://' + host + '/' + path;
-}
-
-browser
-    .webRequest
-    .onBeforeRequest
-    /* Should not be deprecated.
-     * https://github.com/uBlockOrigin/uBlock-issues/issues/338#issuecomment-496009417
-     */
-    .addListener(
-        redirectAssets,
-        redirectFilter,
-        [
-            'blocking',
-        ]
-    );
-
-function redirectAssets(event) {
-    let redirectUrl = assetRedirects[urlToRoute(
-        event.url
-    )];
-
-    return {
-        'redirectUrl': redirectUrl
-    };
-}
-
-browser
-    .webRequest
-    .onHeadersReceived
-    /* Should not be deprecated.
-     * https://github.com/uBlockOrigin/uBlock-issues/issues/338#issuecomment-496009417
-     */
-
-    .addListener(
-        function (event) {
-            let accessControlHeader = null,
-                responseHeaders = event
-                    .responseHeaders,
-                headerNames = responseHeaders.map(
-                    function (header) {
-                        return header.name.toLowerCase();
-                    }
-                ),
-                index = headerNames.indexOf('access-control-allow-origin');
-
-            if (index === -1) {
-                accessControlHeader = {
-                    name: 'access-control-allow-origin'
-                };
-                responseHeaders.push(accessControlHeader);
-            } else {
-                accessControlHeader = responseHeaders[index];
-            }
-
-            accessControlHeader.value = '*';
-
-            return {
-                responseHeaders: responseHeaders
-            }
-        },
-        {
-            urls: offsiteAssetUrls,
-        },
-        [
-            'blocking',
-            'responseHeaders',
-        ]
-    );
-
-function urlToRoute(url) {
-    let matches = url.match(
-        new RegExp(
-            '^.*?://' +
-            host +
-            '[.]?/+(.+?)/?([?#].*)?$'
-        ),
-        'i'
-    );
-
-    return matches instanceof Array && typeof matches[1] === 'string'
-        ? matches[1]
-        : null;
 }
