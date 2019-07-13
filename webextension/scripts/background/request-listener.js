@@ -44,7 +44,6 @@ async function addListeners(host) {
         /* Should not be deprecated.
          * https://github.com/uBlockOrigin/uBlock-issues/issues/338#issuecomment-496009417
          */
-
         .addListener(
             relaxCrossOriginResourceSharing
             ,
