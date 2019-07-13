@@ -11,8 +11,6 @@ async function addListeners(host) {
         offsiteAssetUrls,
         assetPaths;
 
-    await pathsToDataUris(assetRedirects);
-
     offsiteAssetUrls = Object
         .values(assetRedirects)
         .map(
@@ -150,17 +148,6 @@ function relaxedCrossOriginResourceSharing(event) {
     }
 }
 
-
-async function pathsToDataUris(object) {
-    for (let key in object) {
-        urlToDataUri(object[key]).then(
-            function (dataUri) {
-                object[key] = dataUri;
-            }
-        );
-    }
-}
-
 function changeUrisToWebResources(assetRedirects) {
     for (let key in assetRedirects) {
         assetRedirects[key] = uriToWebResource(assetRedirects[key]);
@@ -191,29 +178,6 @@ function readBlobAsType(blob, type) {
             fileReader[type](
                 blob
             );
-        }
-    );
-}
-
-function urlToDataUri(url) {
-    return new Promise(
-        function (resolveXhr, rejectXhr) {
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', url);
-            xhr.responseType = 'blob';
-            xhr.onload = function responseGotten(event) {
-                return readBlobAsType(
-                    event
-                        .target
-                        .response,
-                    'readAsDataURL'
-                ).then(
-                    function (dataUri) {
-                        resolveXhr(dataUri);
-                    }
-                );
-            };
-            xhr.send();
         }
     );
 }
