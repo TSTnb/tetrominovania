@@ -26,6 +26,18 @@ let host = 'tetris.com',
         'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/project-Sanrio/art/minos/mino-CN-Sanrio-02-ghost-%23size=29%23-garbage.png': 'https://i.imgur.com/LEkuAYU.png',
 
         'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/resources-shared/music/remote/BPS-BR/Korobeiniki01.mp3': 'https://s0.vocaroo.com/media/download_temp/Vocaroo_s0144RxmywX1.mp3',
+
+        'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/resources-shared/sounds/Stars/backToBackTetris.mp3': 'https://s1.vocaroo.com/media/download_temp/Vocaroo_s1G9pCr0SzGW.mp3',
+        'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/resources-shared/sounds/Stars/blockout.mp3': 'https://s0.vocaroo.com/media/download_temp/Vocaroo_s09st0FyvR2G.mp3',
+        'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/resources-shared/sounds/Stars/collapse.mp3': 'https://s1.vocaroo.com/media/download_temp/Vocaroo_s11WYRpaklKt.mp3',
+        'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/resources-shared/sounds/Stars/hardDrop.mp3': 'https://s0.vocaroo.com/media/download_temp/Vocaroo_s0tb4eC1XecU.mp3',
+        'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/resources-shared/sounds/Stars/hold.mp3': 'https://s1.vocaroo.com/media/download_temp/Vocaroo_s1HPkJ96wGYg.mp3',
+        'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/resources-shared/sounds/Stars/inputFailed.mp3': 'https://s0.vocaroo.com/media/download_temp/Vocaroo_s0V2WqK5AjwH.mp3',
+        'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/resources-shared/sounds/Stars/levelUp.mp3': 'https://s0.vocaroo.com/media/download_temp/Vocaroo_s0eBCfBAwaac.mp3',
+        'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/resources-shared/sounds/Stars/lineClear.mp3': 'https://s0.vocaroo.com/media/download_temp/Vocaroo_s07HRXW07vEp.mp3',
+        'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/resources-shared/sounds/Stars/lock.mp3': 'https://s0.vocaroo.com/media/download_temp/Vocaroo_s0vWFlga04x4.mp3',
+        'games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/resources-shared/sounds/Stars/win.mp3': 'https://s1.vocaroo.com/media/download_temp/Vocaroo_s1e0cxrGoPqn.mp3',
+
     },
     assetPaths = Object.keys(assetRedirects),
     redirectFilter = {
