@@ -64,5 +64,5 @@
     "assets/images/*/*.png",
     "assets/sounds/*.mp3"
   ],
-  "version": "0.0.1"
+  "version": "0.0.2"
 }
