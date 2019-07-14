@@ -56,5 +56,6 @@
     "scripts/page/load-game.js",
     "styles/game.css"
   ],
-  "version": "0.0.2"
+  "version": "2019.7.14",
+  "version_name": "2019-07-14"
 }
