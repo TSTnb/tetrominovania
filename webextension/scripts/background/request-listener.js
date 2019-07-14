@@ -8,16 +8,7 @@ async function addListeners(host) {
     let assetRedirects = changeUrisToWebResources(
         await loadRedirectDefinitions()
         ),
-        offsiteAssetUrls,
         assetPaths;
-
-    offsiteAssetUrls = Object
-        .values(assetRedirects)
-        .map(
-            function (url) {
-                return addWildcard(url);
-            }
-        );
 
     assetPaths = Object.keys(assetRedirects);
 
@@ -34,24 +25,6 @@ async function addListeners(host) {
             },
             [
                 'blocking',
-            ]
-        );
-
-    browser
-        .webRequest
-        .onHeadersReceived
-        /* Should not be deprecated.
-         * https://github.com/uBlockOrigin/uBlock-issues/issues/338#issuecomment-496009417
-         */
-        .addListener(
-            relaxedCrossOriginResourceSharing
-            ,
-            {
-                urls: offsiteAssetUrls,
-            },
-            [
-                'blocking',
-                'responseHeaders',
             ]
         );
 
@@ -116,36 +89,6 @@ async function loadRedirectDefinitions(path = 'assets/redirect-definitions.json'
             return JSON.parse(json);
         }
     );
-}
-
-/* Required for vocaroo.com */
-function relaxedCrossOriginResourceSharing(event) {
-    let accessControlHeader,
-        responseHeaders = event
-            .responseHeaders,
-        headerNames = responseHeaders.map(
-            function (header) {
-                return header
-                    .name
-                    .toLowerCase();
-            }
-        ),
-        index = headerNames.indexOf('access-control-allow-origin');
-
-    if (index === -1) {
-        accessControlHeader = {
-            name: 'access-control-allow-origin',
-        };
-        responseHeaders.push(accessControlHeader);
-    } else {
-        accessControlHeader = responseHeaders[index];
-    }
-
-    accessControlHeader.value = '*';
-
-    return {
-        responseHeaders: responseHeaders,
-    }
 }
 
 function changeUrisToWebResources(assetRedirects) {

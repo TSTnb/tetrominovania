@@ -57,8 +57,7 @@
   "permissions": [
     "webRequest",
     "webRequestBlocking",
-    "*://tetris.com/*",
-    "*://*.vocaroo.com/*"
+    "*://tetris.com/*"
   ],
   "web_accessible_resources": [
     "assets/images/*/*.png",
