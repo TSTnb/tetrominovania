@@ -16,7 +16,7 @@ function replaceBody(game) {
     document.replaceChild(
         document
             .implementation
-            .createHTMLDocument('Play Tetrominovania')
+            .createHTMLDocument('Tetrominovania')
             .documentElement,
         document.documentElement
     );
