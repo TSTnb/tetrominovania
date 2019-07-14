@@ -1,4 +1,6 @@
 window.stop();
+
+let browser;
 replaceBody('sanrio');
 
 function replaceBody(game) {
@@ -21,6 +23,8 @@ function replaceBody(game) {
         document.documentElement
     );
 
+    setBrowser();
+
     let baseUrls = {
             'default': '/play-tetris-content/resources/project-tetriscom/game/',
             'sanrio': '/games-content/sanrio01/resources/project-tetriscom-sanrio01/game/',
@@ -32,99 +36,90 @@ function replaceBody(game) {
             'sanrio': 'E378AF83A71EF6C8',
             'mb': '7F01C3BC86595C76',
         },
-        cbid = cbids[game];
-
-    document
-        .head
-        .appendChild(
-            document.createElement('style')
-        )
-        .textContent = `
-            body {
-                margin: 0px;
-                padding: 0px;
-                border: 0px;
-                overflow: hidden;
+        cbid = cbids[game],
+        stylesheet = document.createElement('link'),
+        elements = {
+            link: {
+                parent: 'head',
+                attributes: {
+                    rel: 'stylesheet',
+                    type: 'text/css',
+                    href: browser.runtime.getURL('styles/game.css'),
+                },
+            },
+            base: {
+                parent: 'head',
+                attributes: {
+                    href: baseUrl,
+                },
+            },
+            meta: {
+                parent: 'head',
+                attributes: {
+                    cbid: cbid,
+                }
+            },
+            canvas: {
+                parent: 'body',
+                attributes: {
+                    id: 'GameCanvas',
+                },
+            },
+            script: {
+                parent: 'body',
+                attributes: {
+                    'src': browser.runtime.getURL('scripts/page/load-game.js')
+                }
             }
+        },
+        element,
+        attributes;
 
-            #GameCanvas {
-                width: 100vw;
-                height: 100vh;
-            }
-        `;
+    for (let elementName in elements) {
+        element = document.createElement(elementName);
+        attributes = elements[elementName].attributes;
 
-    document
-        .head
-        .appendChild(
-            document.createElement('base')
-        )
-        .setAttribute('href', baseUrl);
-
-    document
-        .body
-        .appendChild(
-            document.createElement('canvas')
-        )
-        .setAttribute('id', 'GameCanvas')
-    ;
-
-    document
-        .body
-        .appendChild(
-            document.createElement('script')
-        )
-        .textContent = '(' + loadGame + ')("' + cbid + '")';
-}
-
-function loadGame(cbid) {
-    const NormalImage = Image;
-
-    class CrossOriginImage {
-        constructor(w, h) {
-            const image = new NormalImage(w, h);
-            image.crossOrigin = 'anonymous';
-            return image;
+        for (let attributeName in attributes) {
+            element.setAttribute(
+                attributeName,
+                attributes[attributeName]
+            );
         }
+
+        document[
+            elements[elementName].parent
+            ]
+            .appendChild(element);
     }
 
-    self.Image = CrossOriginImage;
-
-    getCBID = function () {
-        return cbid;
-    };
-
-    getGameDiv = function () {
-        return document.body;
-    };
-
-    getGameCanvas = function () {
-        return gameCanvas;
-    };
-
-    removeLoadingDisplay = function () {
-    };
-
-    window.cbid = cbid;
-    window.platformSrcDir = 'src-desktop/';
-    window.gameCanvas = document.querySelector('#GameCanvas');
-
-
-    let sources = [
-        platformSrcDir + 'settings.js?cbid=' + getCBID(),
-        'main-bps.js?cbid=' + getCBID(),
-    ];
-
-    sources.forEach(
-        function (source) {
-            let scriptElement = document.createElement('script');
-            scriptElement.async = false;
-            scriptElement.setAttribute('src', source);
-
-            document
-                .body
-                .appendChild(
-                    scriptElement
-                );
-        }
+    window.addEventListener(
+        'message',
+        readyForGame
     );
+
+    /* Declared in this scope so we have access to cbid */
+    function readyForGame(event) {
+        if (
+            event.source !== window ||
+            !(event.data instanceof event.source.Object) ||
+            event.data.direction !== 'from-page-script' ||
+            event.data['ready-for-game'] !== true
+        ) {
+            return;
+        }
+
+        window.postMessage(
+            {
+                'direction': 'from-content-script',
+                'cbid': cbid,
+            },
+            location.href
+        );
+    }
+}
+
+function setBrowser() {
+    if (!(typeof browser === 'object' && browser instanceof Object)) {
+        browser = chrome;
+    }
 }
