@@ -22,6 +22,8 @@
   "games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/project-Sanrio/art/ui/buttons/button-menu-01-hover%23inset=18%23.png": "assets/images/sprites/button-hover.png",
   "games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/project-Sanrio/art/ui/buttons/button-menu-01b-normal%23inset=18%23.png": "assets/images/sprites/button.png",
   "games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/project-Sanrio/art/ui/buttons/button-menu-01b-hover%23inset=18%23.png": "assets/images/sprites/button-hover.png",
+  "games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/project-Sanrio/art/ui/buttons/button-pause-normal.png": "assets/images/sprites/pause.png",
+  "games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/project-Sanrio/art/ui/buttons/button-pause-hover.png": "assets/images/sprites/pause.png",
   "games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/project-Sanrio/art/ui/menu-frame-01%23inset=36%23.png": "assets/images/sprites/menu.png",
   "games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/resources-shared/music/remote/BPS-BR/Korobeiniki01.mp3": "assets/sounds/bgm.mp3",
   "games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/resources-shared/sounds/Stars/backToBackTetris.mp3": "assets/sounds/backToBackFour.mp3",
