@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 set -o errexit -o nounset -o pipefail;
-cd "$(dirname "$0")";
+cd "$(dirname "$0")"/..;
 
 webextension_dir='webextension';
 
