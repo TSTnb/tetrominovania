@@ -1,6 +1,21 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
+
+function error_trap()
+{
+    local line;
+    line="$1";
+    shift;
+    printf 'Error on line %s!\n' "$line";
+    return 1;
+}
+
+trap 'error_trap "$LINENO"' ERR;
+
 set -o errexit -o nounset -o pipefail;
-cd "$(dirname "$0")"/..;
+
+cd "$(
+  dirname "$0";
+)"/..;
 
 webextension_dir='webextension';
 
