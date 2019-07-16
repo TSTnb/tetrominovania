@@ -39,5 +39,6 @@
   "games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/resources-shared/sounds/Stars/lineClear.mp3": "assets/sounds/lineClear.mp3",
   "games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/resources-shared/sounds/Stars/lock.mp3": "assets/sounds/lock.mp3",
   "games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/resources-shared/sounds/Stars/move.mp3": "assets/sounds/null.mp3",
+  "games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/resources-shared/sounds/Stars/rotate.mp3": "assets/sounds/rotate.mp3",
   "games-content/sanrio01/resources/project-tetriscom-sanrio01/game/res/raw-assets/resources/Tetrion-resources/resources-shared/sounds/Stars/win.mp3": "assets/sounds/win.mp3"
 }
