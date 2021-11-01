@@ -35,18 +35,21 @@ function loadGame(cbid) {
 
     window.Image = CrossOriginImage;
     window.cbid = cbid;
+    window.cbidg = cbid;
+    window.isIFrame = true;
     window.platformSrcDir = 'src-desktop/';
+    window.gameContentBasePath='';
     window.gameCanvas = document.querySelector('#GameCanvas');
+    window.gameDiv = gameCanvas.parentElement.parentElement;
 
     /* Cannot load these in the content script because we need to mutate window.Image first */
     let sources = [
-        platformSrcDir + 'settings.js?cbid=' + cbid,
-        'main-bps.js?cbid=' + cbid,
+        platformSrcDir + 'settings.js?cbidg=' + cbid,
+        'main-bps.js?cbidg=' + cbid,
     ];
 
     sources.forEach(
         function appendScript(source) {
-            console.log('the source is ' + source);
             let scriptElement = document.createElement('script');
             scriptElement.async = false;
             scriptElement.setAttribute('src', source);

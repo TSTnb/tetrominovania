@@ -18,7 +18,7 @@
   },
   "content_scripts": [
     {
-      "all_frames": false,
+      "all_frames": true,
       "js": [
         "scripts/content/game-frame.js"
       ],
@@ -36,7 +36,7 @@
       "run_at": "document_start"
     }
   ],
-  "description": "Play your favorite Sanrio Characters tetromino game with less lag!",
+  "description": "Play your favorite single-player stacking game with less lag!",
   "icons": {
     "16": "assets/icons/16.png",
     "48": "assets/icons/48.png",

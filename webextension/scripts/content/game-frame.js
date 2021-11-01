@@ -1,20 +1,9 @@
 window.stop();
 
 let browser;
-replaceBody('sanrio');
+replaceBody('default');
 
 function replaceBody(game) {
-    document
-        .replaceChild(
-            document
-                .implementation
-                .createDocumentType(
-                    'html',
-                    '',
-                    ''),
-            document.doctype
-        );
-
     document.replaceChild(
         document
             .implementation
@@ -25,19 +14,16 @@ function replaceBody(game) {
 
     setBrowser();
 
-    let baseUrls = {
-            'default': '/play-tetris-content/resources/project-tetriscom/game/',
-            'sanrio': '/games-content/sanrio01/resources/project-tetriscom-sanrio01/game/',
+    let cbids = {
+            'default': '333939EF295B389F',
+            'mb': '73FCE0E2235227D0',
+        },
+        cbid = cbids[game],
+        baseUrls = {
+            'default': `/games-content/play-tetris-content/resources/project-tetriscom/game/game-${cbids['default']}/`,
             'mb': '/play-tetris-content-mb/resources/project-tetriscom-MB/game/',
         },
         baseUrl = baseUrls[game],
-        cbids = {
-            'default': '1222606EA8579670',
-            'sanrio': 'E378AF83A71EF6C8',
-            'mb': '7F01C3BC86595C76',
-        },
-        cbid = cbids[game],
-        stylesheet = document.createElement('link'),
         elements = {
             link: {
                 parent: 'head',
