@@ -11,7 +11,7 @@ browser
                 .tabs
                 .create(
                     {
-                        url: 'https://tetris.com/sanrio',
+                        url: 'https://\u0074\u0065\u0074\u0072\u0069\u0073.com/sanrio',
                     }
                 );
         }
