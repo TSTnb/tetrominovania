@@ -15,7 +15,7 @@ function replaceBody(game) {
     setBrowser();
 
     let cbids = {
-            'default': '333939EF295B389F',
+            'default': 'C24E80D3C7A8B26E',
             'mb': '73FCE0E2235227D0',
         },
         cbid = cbids[game],
